@@ -1,6 +1,5 @@
 import express from "express";
 import mysql, {
-  ConnectionOptions,
   ResultSetHeader,
   RowDataPacket,
 } from 'mysql2/promise';
