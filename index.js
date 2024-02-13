@@ -1,14 +1,10 @@
-const express = require("express");
+import express from "express";
 import mysql, {
   ConnectionOptions,
   ResultSetHeader,
   RowDataPacket,
 } from 'mysql2/promise';
 
-interface User extends RowDataPacket {
-  id: number;
-  name: string;
-}
 
 (async () => {
   const connection = await mysql.createConnection({
@@ -31,7 +27,7 @@ interface User extends RowDataPacket {
     console.log('Inserted:', inserted.affectedRows);
 
     /** Getting users */
-    const [users] = await connection.query<User>(
+    const [users] = await connection.query(
       'SELECT * FROM `users` ORDER BY `name` ASC;'
     );
   
