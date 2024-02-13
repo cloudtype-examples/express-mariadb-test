@@ -1,15 +1,18 @@
 const express = require("express");
 const mysql = require("mysql2/promise");
 
-const connection = await mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  port: 3306,
-  database: "test",
-});
+(async () => {
+    const connection = await mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        port: 3306,
+        database: "test",
+      });
+      
+      console.log(connection);
+})();
 
-console.log(connection);
 
 const app = express();
 
