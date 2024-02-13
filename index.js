@@ -1,8 +1,5 @@
 import express from "express";
-import mysql, {
-  ResultSetHeader,
-  RowDataPacket,
-} from 'mysql2/promise';
+import mysql from 'mysql2/promise';
 
 
 (async () => {
@@ -14,11 +11,11 @@ import mysql, {
     database: "test",
   });
 
-  await connection.query<ResultSetHeader>("DROP TABLE IF EXISTS `users`;");
+  await connection.query("DROP TABLE IF EXISTS `users`;");
 
-  await connection.query<ResultSetHeader>("CREATE TABLE `users` (`id` INT(11) AUTO_INCREMENT, `name` VARCHAR(50), PRIMARY KEY (`id`));");
+  await connection.query("CREATE TABLE `users` (`id` INT(11) AUTO_INCREMENT, `name` VARCHAR(50), PRIMARY KEY (`id`));");
 
-  const [inserted] = await connection.execute<ResultSetHeader>(
+  const [inserted] = await connection.execute(
     "INSERT INTO `users`(`name`) VALUES(?), (?), (?), (?);",
     ["Josh", "John", "Marie", "Gween"]
     );
